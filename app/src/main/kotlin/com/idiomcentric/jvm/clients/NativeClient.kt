@@ -6,10 +6,10 @@ import java.net.http.HttpRequest
 import java.net.http.HttpResponse
 import java.time.Duration
 
-class NativeClient: ClientHttp {
-    override fun get(url: String, port: Int): String {
+open class NativeClient: ClientHttp {
+    override fun get(url: String): String {
         val client = HttpClient.newHttpClient()
-        val uri = URI.create("$url:$port")
+        val uri = URI.create("$url")
         val request = HttpRequest
             .newBuilder()
             .uri(uri)

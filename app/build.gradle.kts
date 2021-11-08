@@ -1,6 +1,7 @@
 plugins {
     // Apply the org.jetbrains.kotlin.jvm Plugin to add support for Kotlin.
     id("org.jetbrains.kotlin.jvm") version "1.5.31"
+    id("me.champeau.jmh") version "0.6.6"
 }
 
 repositories {
@@ -16,6 +17,16 @@ dependencies {
 
     // Use the Kotlin JUnit integration.
     testImplementation("org.jetbrains.kotlin:kotlin-test-junit")
+
+    jmh("org.openjdk.jmh:jmh-core:1.19")
+    jmh("org.openjdk.jmh:jmh-generator-annprocess:1.19")
+
+}
+
+configurations {
+    val jmhImplementation by getting {
+        extendsFrom(configurations["implementation"])
+    }
 }
 
 // Supported since 1.5.30
